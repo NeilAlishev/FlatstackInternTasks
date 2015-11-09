@@ -1,0 +1,14 @@
+<div class="container">
+	<h1> Редактировать событие </h1>
+	
+	<%=form_for @event do |f|%>
+	<p>
+		<%= f.label :"Название(Обязательно)" %> <br />
+		<%= f.text_field :name %>
+	</p>
+	<p>
+		<%= f.label :"Дата(Обязательно)" %> <br />
+		<%= f.text_field :event_date, placeholder: "Нажмите" %>
+	</p>
+	<%= f.submit %>
+	<%end%>

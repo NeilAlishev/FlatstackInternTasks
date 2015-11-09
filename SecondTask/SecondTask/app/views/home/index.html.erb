@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<% if user_signed_in? %>
+<h1>Календарь пользователя <%= current_user[:email] %> </h1>
+<div class="row">
+    <div class="col-md-5 col-md-offset-4">
+        <h1><%=link_to("Добавить новое событие",new_event_path)%></h1>
+    </div>
+</div>
+<br />
+<div id="events">
+    <h2 id="month"><%=link_to "<", date:@date.prev_month%><%= @date.strftime("%B %Y")%><%=link_to ">", date:@date.next_month%> </h2>
+    <%= calendar @date do |date| %>
+    <%=date.day %>
+    <% if @events_by_date[date] %>
+    <ul>
+        <% @events_by_date[date].each do |event| %>
+        <li><%= link_to event.name, event %></li>
+        <% end %>
+    </ul>
+    <% end %>
+    <% end %>
+</div>
+<%else%>
+<h1> Войдите, чтобы воспользоваться календарем </h1>
+<%end%>
